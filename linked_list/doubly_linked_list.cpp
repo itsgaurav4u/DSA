@@ -38,18 +38,33 @@ void print(Node* head){
 
 }
 // insert at head
-void insertathead(Node* &head,int d){
-    Node* temp=new Node(d);
-    temp->next=head;
-    head->prev=temp;
-    head=temp;
+void insertathead(Node* &tail,Node* &head,int d){
+    if(head==NULL){
+        Node* temp =new Node(d);
+        head=temp;
+        tail=temp;
+
+    }
+    else{
+        Node* temp=new Node(d);
+        temp->next=head;
+        head->prev=temp;
+        head=temp;
+    }
 }
 // insert at tail
-void insertattail(Node* &tail,int d){
-    Node* temp=new Node(d);
-    tail->next=temp;
-    temp->prev=tail;
-    tail=temp;
+void insertattail(Node* &tail,Node* &head,int d){
+    if(tail==NULL){
+        Node* temp= new Node(d);
+        head=temp;
+        tail=temp;
+    }
+    else{
+         Node* temp=new Node(d);
+         tail->next=temp;
+         temp->prev=tail;
+         tail=temp;
+    }
 
      
 }
@@ -57,7 +72,7 @@ void insertattail(Node* &tail,int d){
 void insertatposition(Node* &tail,Node* &head, int position,int d){
    // insert at head position
    if(position==1){
-    insertathead(head,d);
+    insertathead(tail,head,d);
     return;
    }
    Node* temp=head;
@@ -68,7 +83,7 @@ void insertatposition(Node* &tail,Node* &head, int position,int d){
    }
  // insert at last position
    if(temp->next==NULL){
-    insertattail(tail,d);
+    insertattail(tail,head,d);
     return;
    }
    Node* nodetoinsert=new Node(d);
@@ -81,22 +96,61 @@ void insertatposition(Node* &tail,Node* &head, int position,int d){
 }
 
 int main(){
-    Node* node1=new Node(10);
-    Node* head=node1;
-    Node* tail=node1;
+    // if linked list is created with node 10
+    //Node* node1=new Node(10);
+    //Node* head=node1;
+    //Node* tail=node1;
+
+    // if linked list is empty
+    Node* head=NULL;
+    Node* tail=NULL;
+
 
     print(head);
 
-    cout<<getlength(head)<<endl;
+    //cout<<getlength(head)<<endl;
 
-    insertathead(head,11);
-    insertathead(head,13);
-    insertathead(head,8);
-    insertattail(tail,25);
+    insertathead(tail,head,11);
+    print(head);
+    cout<<"head"<<head->data<<endl;
+    cout<<"tail"<<tail->data<<endl;
+
+
+    insertathead(tail,head,13);
+    print(head);
+    cout<<"head"<<head->data<<endl;
+    cout<<"tail"<<tail->data<<endl;
+
+
+    insertathead(tail,head,8);
+    print(head);
+    cout<<"head"<<head->data<<endl;
+    cout<<"tail"<<tail->data<<endl;
+
+
+    insertattail(tail,head,25);
+    print(head);
+    cout<<"head"<<head->data<<endl;
+    cout<<"tail"<<tail->data<<endl;
+
+
     insertatposition(tail,head,2,100);
-    insertatposition(tail,head,1,101);
-    insertatposition(tail,head,8,102);
     print(head);
+    cout<<"head"<<head->data<<endl;
+    cout<<"tail"<<tail->data<<endl;
+
+
+    insertatposition(tail,head,1,101);
+    print(head);
+    cout<<"head"<<head->data<<endl;
+    cout<<"tail"<<tail->data<<endl;
+
+    
+    insertatposition(tail,head,7,102);
+    print(head);
+    cout<<"head"<<head->data<<endl;
+    cout<<"tail"<<tail->data<<endl;
+    
     return 0;
 }
 
