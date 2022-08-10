@@ -145,11 +145,8 @@ int main(){
     cout<<"head"<<head->data<<endl;
     cout<<"tail"<<tail->data<<endl;
 
+
     
-    insertatposition(tail,head,7,102);
-    print(head);
-    cout<<"head"<<head->data<<endl;
-    cout<<"tail"<<tail->data<<endl;
     
     return 0;
 }
