@@ -14,6 +14,16 @@ class Node{
         this->prev=NULL;
         this->next=NULL;
     }
+    // distructor
+    ~Node(){
+        int val = this->data;
+        if(next!=NULL){
+            delete next;
+            next=NULL;  
+        }
+        cout<<"memory free for data "<<val<<endl;
+
+    }
 };
 // getting length of linked list
 
@@ -95,6 +105,39 @@ void insertatposition(Node* &tail,Node* &head, int position,int d){
 
 }
 
+// deletion of linked list
+
+void deleteNode(int position , Node* &head){
+    // deletion for first position
+    if(position ==1){
+        Node* temp=head;
+        temp->next->prev=NULL;
+        head=temp->next;
+        temp->next=NULL;
+        delete temp;
+    }
+    // deleting any middle element in doubly linked list
+    else{
+        Node* curr=head;
+        Node* prev=NULL;
+
+    
+        int cnt =1;
+        while(cnt<position){
+        prev=curr;
+        curr=curr->next;
+        cnt++;
+    }
+    curr->prev=NULL;
+    prev->next=curr->next;
+    curr->next=NULL;
+
+    delete curr;
+
+    }
+
+}
+
 int main(){
     // if linked list is created with node 10
     //Node* node1=new Node(10);
@@ -145,8 +188,14 @@ int main(){
     cout<<"head"<<head->data<<endl;
     cout<<"tail"<<tail->data<<endl;
 
-
     
+    insertatposition(tail,head,7,102);
+    print(head);
+    cout<<"head"<<head->data<<endl;
+    cout<<"tail"<<tail->data<<endl;
+
+    deleteNode(7,head);
+    print(head);
     
     return 0;
 }
