@@ -10,12 +10,33 @@ class Hero{
     int health;
     public:
     char level;
+
+    Hero(){
+        cout<<"constructor called"<<endl;
+    }
+
+    //paramerterised constructor
+
+    Hero(int health, char level){
+        this->level=level;
+        this ->health=health;
+        //cout<<"this-> "<<this<<endl; 
+    }
+
+
      
     //PRIVATE members are only accessed inside the class only
 
-    /*void print(){
-        cout<<level<<endl;
-    }*/
+    void print(){
+        cout<<"this->health "<<health<<endl;
+        cout<<"this->level "<<level<<endl;
+    }
+  
+    Hero(Hero &temp){
+        this->health=temp.health;
+        this->level=temp.level;
+    }
+    
 
     int getHealth(){
         return health;
@@ -34,12 +55,60 @@ class Hero{
     }
 
 
+    ~Hero(){
+        cout<<"Distructor called"<<endl;
+
+    }
+
+
 };
 
 int main(){
 
-    //creation of object
 
+//static 
+
+Hero a;
+
+//Dynamic
+
+Hero *b=new Hero();
+
+delete(b); 
+
+
+
+   /* Hero S(70,'C');
+    S.print();
+
+
+// copy constructor
+    Hero R(S);
+    R.print();*/
+
+    
+    /*Hero ramesh(10);
+
+    cout<<"Address"<<&ramesh<<endl;
+
+    Hero *h=new Hero();*/
+    
+
+
+    // Dynamic allocation
+
+    /*Hero *b=new Hero;
+    b->setLevel('A');
+    b->setHealth(70);
+    cout<<"level is "<<(*b).level<<endl;
+    cout<<"health is "<<(*b).getHealth()<<endl;
+
+
+    cout<<"level is "<<b->level<<endl;
+    cout<<"health is "<<b->getHealth()<<endl;*/
+
+    /*//creation of object
+    // we are statcially allocating the mermory
     Hero ramesh;
     ramesh.setHealth(70);
     cout<<"ramesh health is "<<ramesh.getHealth()<<endl;
@@ -51,5 +120,5 @@ int main(){
     //cout<<"size of ramesh is "<<sizeof(ramesh);
 
     //cout<<"health of ramesh is "<< ramesh.health<<endl;
-    cout<<"level of ramesh is "<< ramesh.level<<endl;
+    cout<<"level of ramesh is "<< ramesh.level<<endl;*/
 }
